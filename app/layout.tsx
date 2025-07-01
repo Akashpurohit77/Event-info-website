@@ -29,9 +29,9 @@ export default function RootLayout({
     <ClerkProvider>
     <html lang="en">
       <body>
-        <div className="flex h-screen flex-col">
+        <div>
           <Header />
-          <main className="flex-1">{children}</main>
+          <main>{children}</main>
           <Footer />
         </div>
       </body>

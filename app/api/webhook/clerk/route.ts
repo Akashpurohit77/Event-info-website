@@ -25,7 +25,8 @@ export async function POST(req: NextRequest) {
         console.error(" Missing ID or username in webhook data")
         return NextResponse.json({ error: "Missing required user data" }, { status: 400 })
       }
-
+      console.log("going to create the user ");
+      console.log("this is the username", username);
       const user = {
         clerkId: id,
         email: email_addresses[0].email_address,
@@ -34,6 +35,8 @@ export async function POST(req: NextRequest) {
         lastName: last_name ?? "",
         photo: image_url,
       }
+      console.log(user);
+
 
       const newUser = await createUser(user)
       console.log("new user created");

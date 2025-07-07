@@ -11,7 +11,9 @@
   "dependencies": {
     "@clerk/clerk-sdk-node": "^4.13.23",
     "@clerk/nextjs": "^6.23.1",
+    "@hookform/resolvers": "^5.1.1",
     "@radix-ui/react-dialog": "^1.1.14",
+    "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/react-separator": "^1.1.7",
     "@radix-ui/react-slot": "^1.2.3",
     "@uploadthing/react": "^7.3.2",
@@ -24,10 +26,12 @@
     "query-string": "^9.2.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-hook-form": "^7.60.0",
     "svix": "^1.68.0",
     "tailwind-merge": "^3.3.1",
     "tailwindcss-animate": "^1.0.7",
-    "uploadthing": "^7.7.3"
+    "uploadthing": "^7.7.3",
+    "zod": "^3.25.75"
   },
   "devDependencies": {
     "@types/node": "^20",

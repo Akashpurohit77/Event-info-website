@@ -9,6 +9,7 @@ console.log("Clerk webhook triggered")
 
 export async function POST(req: NextRequest) {
   try {
+    console.log("the code has reached to the post req");
     const evt = await verifyWebhook(req) as WebhookEvent
     const { id } = evt.data
     const eventType = evt.type
@@ -35,12 +36,13 @@ export async function POST(req: NextRequest) {
       }
 
       const newUser = await createUser(user)
+      console.log("new user created");
 
       if (!newUser) {
         console.error(" User creation failed")
         return NextResponse.json({ error: "User not saved" }, { status: 500 })
       }
-
+      console.log("reached the metadata");
       await clerkClient.users.updateUserMetadata(id, {
         publicMetadata: {
           userId: newUser._id
@@ -88,4 +90,3 @@ export async function POST(req: NextRequest) {
     return new Response('Webhook verification failed', { status: 400 })
   }
 }
-  

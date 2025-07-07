@@ -19,6 +19,8 @@ export const connectToDatabase = async () => {
   console.log("passed the dbname attribute");
 
   cached.conn = await cached.promise;
-
+  console.log("reached 2 line");
+  console.log(cached.conn);
+  console.log("reached the final part");
   return cached.conn;
 }

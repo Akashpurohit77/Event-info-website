@@ -22,7 +22,7 @@ import { createEvent, updateEvent } from "@/lib/actions/event.actions";
 import { IEvent } from "@/lib/database/models/event.model";
 import { eventFormSchema } from "@/lib/validator";
 
-// import { Dropdown } from "./dropdown";
+import { Dropdown } from "./Dropdown";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -104,7 +104,7 @@ export const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
               </FormItem>
             )}
           />
-          {/* <FormField
+          <FormField
             control={form.control}
             name="categoryId"
             render={({ field }) => (
@@ -115,7 +115,7 @@ export const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
                 <FormMessage />
               </FormItem>
             )}
-          /> */}
+          />
         </div>
 
         <div className="flex flex-col gap-5 md:flex-row">

@@ -34,7 +34,7 @@ type EventFormProps = {
   eventId?: string;
 };
 
-const DEFAULT_IMAGE_URL = "/assets/images/default-event.png";
+const DEFAULT_IMAGE_URL = "/assets/images/default-img.png";
 
 export const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
   const initialValues =

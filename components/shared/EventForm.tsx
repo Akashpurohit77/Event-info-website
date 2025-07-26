@@ -68,6 +68,8 @@ export const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
           userId,
           path: "/profile",
         });
+        console.log("Created event:", newEvent);
+
         if (newEvent) {
           form.reset();
           router.push(`/events/${newEvent._id}`);

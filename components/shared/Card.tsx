@@ -5,7 +5,7 @@ import Link from "next/link";
 import { IEvent } from "@/lib/database/models/event.model";
 import { formatDateTime } from "@/lib/utils";
 
-import DeleteConfirmation from "./DeleteConfirmation";
+import {DeleteConfirmation} from "./DeleteConfirmation";
 
 type CardProps = {
   event: IEvent;

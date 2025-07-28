@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 // import { CheckoutButton } from "@/components/shared/checkout-button";
-// import { Collection } from "@/components/shared/Collection";
+import { Collection } from "@/components/shared/Collection";
 import {
   getEventById,
   getRelatedEventsByCategory,
@@ -103,7 +103,7 @@ const EventDetails = async ({
       <div className="wrapper my-8 flex flex-col gap-8 md:gap-12">
         <h2 className="h2-bold">Related Events</h2>
 
-        {/* <Collection
+        <Collection
           data={relatedEvents?.data}
           emptyTitle="No events found."
           emptyStateSubtext="Come back later."
@@ -111,7 +111,7 @@ const EventDetails = async ({
           limit={3}
           page={searchParams?.page as string}
           total={relatedEvents?.totalPages}
-        /> */}
+        />
       </div>
     </>
   );

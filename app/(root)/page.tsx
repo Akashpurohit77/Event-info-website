@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
-// import { CategoryFilter } from "@/components/shared/category-filter";
+import { CategoryFilter} from "@/components/shared/CategoryFilter";
 import { Collection } from "@/components/shared/Collection";
-// import { Search } from "@/components/shared/search";
+import { Search } from "@/components/shared/Search";
 import { buttonVariants } from "@/components/ui/button";
 import { getAllEvents } from "@/lib/actions/event.actions";
 import { cn } from "@/lib/utils";
@@ -66,10 +66,10 @@ export default async function Home({ searchParams }: SearchParamProps) {
           Trust by <br /> Thousands of Events
         </h2>
 
-        {/* <div className="flex w-full flex-col gap-5 md:flex-row">
+        <div className="flex w-full flex-col gap-5 md:flex-row">
           <Search />
           <CategoryFilter />
-        </div> */}
+        </div>
 
         <Collection
           data={events?.data}

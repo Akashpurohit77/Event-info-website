@@ -7,18 +7,18 @@ import {
   getRelatedEventsByCategory,
 } from "@/lib/actions/event.actions";
 import { formatDateTime } from "@/lib/utils";
-import type { SearchParamProps } from "@/types";
+import type { EventDetailsParams, SearchParamProps } from "@/types";
 
 const EventDetails = async ({
   params: { id },
-  searchParams,
-}: SearchParamProps) => {
+  searchParams={},
+}: EventDetailsParams) => {
   const event = await getEventById(id);
 
   const relatedEvents = await getRelatedEventsByCategory({
     categoryId: event.category._id,
     eventId: event._id,
-    page: searchParams.page as string,
+    page: searchParams.page ?? "1",
   });
 
   return (

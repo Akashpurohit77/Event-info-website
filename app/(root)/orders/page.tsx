@@ -1,4 +1,4 @@
-import { Search } from "@/components/shared/search";
+import {Search} from "@/components/shared/Search";
 import { getOrdersByEvent } from "@/lib/actions/order.actions";
 import { IOrderItem } from "@/lib/database/models/order.model";
 import { formatDateTime, formatPrice } from "@/lib/utils";

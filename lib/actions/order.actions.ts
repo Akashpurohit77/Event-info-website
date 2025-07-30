@@ -16,39 +16,38 @@ import type {
   GetOrdersByUserParams,
 } from "@/types";
 
-export const checkoutOrder = async (order: CheckoutOrderParams) => {
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+import Razorpay from "razorpay"
 
-  const price = order.isFree ? 0 : Number(order.price) * 100;
+export const checkoutOrder = async (order: CheckoutOrderParams) => {
+  const razorpay = new Razorpay({
+    key_id: process.env.RAZORPAY_KEY_ID!,
+    key_secret: process.env.RAZORPAY_KEY_SECRET!,
+  });
+
+  const amount = order.isFree ? 0 : Number(order.price) * 100;
 
   try {
-    const session = await stripe.checkout.sessions.create({
-      line_items: [
-        {
-          price_data: {
-            currency: "usd",
-            unit_amount: price,
-            product_data: {
-              name: order.eventTitle,
-            },
-          },
-          quantity: 1,
-        },
-      ],
-      metadata: {
+    const response = await razorpay.orders.create({
+      amount,
+      currency: "INR",
+      receipt: `receipt_${Date.now()}`,
+      notes: {
         eventId: order.eventId,
         buyerId: order.buyerId,
       },
-      mode: "payment",
-      success_url: `${process.env.NEXT_PUBLIC_APP_BASE_URL}/profile`,
-      cancel_url: `${process.env.NEXT_PUBLIC_APP_BASE_URL}/`,
     });
 
-    redirect(session.url!);
+    // Redirect to checkout page with order details
+    redirect(
+      `${process.env.NEXT_PUBLIC_APP_BASE_URL}/checkout?orderId=${response.id}&amount=${amount}&eventTitle=${encodeURIComponent(
+        order.eventTitle
+      )}&eventId=${order.eventId}&buyerId=${order.buyerId}`
+    );
   } catch (error) {
     throw error;
   }
 };
+
 
 export const createOrder = async (order: CreateOrderParams) => {
   try {

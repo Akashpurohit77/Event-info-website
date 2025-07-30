@@ -7,7 +7,7 @@ import { buttonVariants } from "@/components/ui/button";
 import type { IEvent } from "@/lib/database/models/event.model";
 import { cn } from "@/lib/utils";
 
-import { Checkout}  from "./Checkout";
+import Checkout  from "./Checkout";
 
 export const CheckoutButton = ({ event }: { event: IEvent }) => {
   const { user } = useUser();

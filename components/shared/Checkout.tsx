@@ -1,19 +1,17 @@
-import { loadStripe } from "@stripe/stripe-js";
-import { useState } from "react";
+// components/Checkout.tsx
+"use client";
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { checkoutOrder } from "@/lib/actions/order.actions";
 import type { IEvent } from "@/lib/database/models/event.model";
 
-loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
-
-export const Checkout = ({
-  event,
-  userId,
-}: {
+interface CheckoutProps {
   event: IEvent;
   userId: string;
-}) => {
+}
+
+const Checkout = ({ event, userId }: CheckoutProps) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const onCheckout = async () => {
@@ -27,25 +25,32 @@ export const Checkout = ({
       buyerId: userId,
     };
 
-    await checkoutOrder(order);
+    try {
+      const response = await checkoutOrder(order);
+      console.log("Response from checkoutOrder:", response);
+    } catch (error) {
+      console.error("Checkout failed:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-    <form action={onCheckout} method="post">
-      <Button
-        type="submit"
-        role="link"
-        size="lg"
-        className="button sm:w-fit"
-        disabled={isLoading}
-        aria-disabled={isLoading}
-      >
-        {isLoading
-          ? "Redirecting..."
-          : event.isFree
-            ? "Get Ticket"
-            : "Buy Ticket"}
-      </Button>
-    </form>
+    <Button
+      type="button"
+      role="link"
+      size="lg"
+      className="button sm:w-fit"
+      disabled={isLoading}
+      onClick={onCheckout}
+    >
+      {isLoading
+        ? "Checking..."
+        : event.isFree
+        ? "Get Ticket"
+        : "Buy Ticket"}
+    </Button>
   );
 };
+
+export default Checkout;

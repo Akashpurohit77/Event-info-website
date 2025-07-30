@@ -167,6 +167,7 @@ export type SearchParamProps = {
   searchParams?: {
     page?: string;
     query?: string;
+    eventId?: string;
     category?: string;
     eventsPage?: string;
     ordersPage?: string;
